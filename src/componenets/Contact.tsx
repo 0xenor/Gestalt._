@@ -1,59 +1,67 @@
 import React, { useState } from 'react';
-import {  Send, Instagram, Twitter, CheckCircle } from 'lucide-react';
-import { FaDiscord } from 'react-icons/fa'
+import { Send, Twitter, CheckCircle } from 'lucide-react';
+import { FaDiscord } from 'react-icons/fa';
 
 const Contact: React.FC = () => {
-    const [ formData, setformData ] = useState({
-        name: '',
-        email: '',
-        message: '',
-    });
-    const [isSubmitting, setIsSubmitting ] = useState(false);
-    const [ isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setformData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement >) => {
-        const { name, value } = e.target;
-        setformData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setformData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-        await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      const response = await fetch('https://formspree.io/f/mvgqljev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-        setIsSubmitting(false);
+      if (response.ok) {
         setIsSubmitted(true);
-        setformData({name: '', email: '', message: ''});
+        setformData({ name: '', email: '', message: '' });
+      } else {
+        alert('Error sending message. Please try again.');
+      }
+    } catch (error) {
+      alert('Something went wrong. Please try again.');
+    }
 
-        setTimeout(() =>  setIsSubmitted(false), 3000);
-    };
+    setIsSubmitting(false);
+    setTimeout(() => setIsSubmitted(false), 3000);
+  };
 
-    const sociallinks = [
-        {
-          name: 'FaDiscord',
-          icon: FaDiscord,
-          url: '',
-          color: 'hover:text-blue-700',
-        },
-        {
-            name: 'Instagram',
-            icon: Instagram,
-            url: 'https://www.instagram.com/igrievee/',
-            color: 'hover:text-blue-500',
-        },
-        {
-            name: 'Twitter',
-            icon : Twitter,
-            url: 'https://x.com/Cikatris_Editor',
-            color: 'hover; text-blue-500',
-        },
-    ];
+  const sociallinks = [
+    {
+      name: 'FaDiscord',
+      icon: FaDiscord,
+      url: '',
+      color: 'hover:text-blue-700',
+    },
+    {
+      name: 'Twitter',
+      icon: Twitter,
+      url: 'https://x.com/Cikatris_Editor',
+      color: 'hover; text-blue-500',
+    },
+  ];
 
-    return (
+  return (
     <section id="contact" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -66,7 +74,10 @@ const Contact: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block font-inter font-bold text-gray-300 mb-2">
+                <label
+                  htmlFor="name"
+                  className="block font-inter font-bold text-gray-300 mb-2"
+                >
                   Name
                 </label>
                 <input
@@ -80,9 +91,12 @@ const Contact: React.FC = () => {
                   placeholder="Your full name"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="email" className="block font-inter font-bold text-gray-300 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block font-inter font-bold text-gray-300 mb-2"
+                >
                   Email
                 </label>
                 <input
@@ -93,13 +107,16 @@ const Contact: React.FC = () => {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-3 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-200 font-inter text-white placeholder-gray-500"
-                  placeholder="your.email@example.com"
+                  placeholder="your email@gmail.com"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="message" className="block font-inter font-bold text-gray-300 mb-2">
+              <label
+                htmlFor="message"
+                className="block font-inter font-bold text-gray-300 mb-2"
+              >
                 Project Details
               </label>
               <textarea
@@ -172,13 +189,17 @@ const Contact: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-gray-400 font-inter font-black">
             <p>&copy; 2025 Gestalt. All rights reserved.</p>
-            <p className="mt-2 text-sm font-poppins font-extrabold">Editor with a considerable amount of experience.</p>
+            <p className="mt-2 text-sm font-poppins font-extrabold">
+              Editor with a considerable amount of experience
+            </p>
+            <p className="mt-2 text-sm font-poppins font-extrabold">
+              Discord Username: cikatris
+            </p>
           </div>
         </div>
       </div>
     </section>
   );
 };
-
 
 export default Contact;

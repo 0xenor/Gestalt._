@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 type Review = {
@@ -55,13 +55,42 @@ const Reviews: React.FC = () => {
     },
   ];
 
+  const rowRefs = useRef<HTMLDivElement[]>([]);
+  const [visibleRows, setVisibleRows] = useState<boolean[]>([false, false]);
+
+  useEffect(() => {
+    const fadeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const rowIndex = Number(entry.target.getAttribute("data-row"));
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              setVisibleRows((prev) => {
+                const updated = [...prev];
+                updated[rowIndex] = true;
+                return updated;
+              });
+            }, rowIndex * 400); // الصف الثاني يتأخر 400ms على الأول
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    rowRefs.current.forEach((row) => {
+      if (row) fadeObserver.observe(row);
+    });
+
+    return () => fadeObserver.disconnect();
+  }, []);
+
   return (
     <section id="reviews" className="py-12 relative">
       <style>{`
         .pfp-card {
           background: #0a0a0a;
           border: 1px solid rgba(255,255,255,0.06);
-          max-width: 360px; /* صغرنا العرض باش يقربو */
+          max-width: 360px;
           margin: 0 auto;
           padding: 14px 16px;
         }
@@ -80,12 +109,17 @@ const Reviews: React.FC = () => {
       </div>
 
       {/* الصف الأول */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-2 mb-4 flex-wrap">
+      <div
+        data-row={0}
+        ref={(el) => {
+          if (el) rowRefs.current[0] = el;
+        }}
+        className={`flex flex-col md:flex-row items-center justify-center gap-2 mb-4 flex-wrap transform transition-all duration-700 ease-out
+          ${visibleRows[0] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+        `}
+      >
         {reviews.slice(0, 3).map((r) => (
-          <article
-            key={r.id}
-            className="pfp-card flex items-center rounded-lg"
-          >
+          <article key={r.id} className="pfp-card flex items-center rounded-lg">
             <img
               src={r.avatar}
               alt={r.name}
@@ -115,12 +149,17 @@ const Reviews: React.FC = () => {
       </div>
 
       {/* الصف الثاني */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-2 flex-wrap">
+      <div
+        data-row={1}
+        ref={(el) => {
+          if (el) rowRefs.current[1] = el;
+        }}
+        className={`flex flex-col md:flex-row items-center justify-center gap-2 flex-wrap transform transition-all duration-700 ease-out
+          ${visibleRows[1] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+        `}
+      >
         {reviews.slice(3, 6).map((r) => (
-          <article
-            key={r.id}
-            className="pfp-card flex items-center rounded-lg"
-          >
+          <article key={r.id} className="pfp-card flex items-center rounded-lg">
             <img
               src={r.avatar}
               alt={r.name}
