@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+
 interface Project {
   id: number;
   mp4Url: string;
@@ -16,12 +17,12 @@ const Projects: React.FC = () => {
     {
       id: 2,
       mp4Url: '/videos/practice.mp4',
-      caption: 'Engaging Effects'
+      caption: 'Captivating Highlights'
     },
     {
       id: 3,
       mp4Url: '/videos/deeping the saltiest players in rust_1.mp4',
-      caption: 'Captivating Highlights'
+      caption: 'Engaging Effects'
     },
   ];
 

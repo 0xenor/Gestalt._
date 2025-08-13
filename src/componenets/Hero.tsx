@@ -1,5 +1,5 @@
 import React from 'react';
-import { Twitter } from 'lucide-react';
+import { RiTwitterXLine } from "react-icons/ri"; 
 import { FaDiscord } from 'react-icons/fa';
 import ProfileImage from '../assets/gestalt.jpg';
 
@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
             </a>
             <a href="https://x.com/Cikatris_Editor" target="_blank"
                className="group p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:border-blue-500/70 transition-all duration-300 hover:scale-110">
-              <Twitter className="w-7 h-7 text-gray-200 group-hover:text-blue-700 transition-color" />
+              <RiTwitterXLine className="w-7 h-7 text-gray-200 group-hover:text-blue-700 transition-color" />
             </a>
           </div>
 

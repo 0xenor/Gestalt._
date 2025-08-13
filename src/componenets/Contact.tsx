@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, Twitter, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle } from 'lucide-react';
+import { RiTwitterXLine } from "react-icons/ri"; 
 import { FaDiscord } from 'react-icons/fa';
 
 const Contact: React.FC = () => {
@@ -55,7 +56,7 @@ const Contact: React.FC = () => {
     },
     {
       name: 'Twitter',
-      icon: Twitter,
+      icon: RiTwitterXLine,
       url: 'https://x.com/Cikatris_Editor',
       color: 'hover; text-blue-500',
     },
@@ -192,7 +193,7 @@ const Contact: React.FC = () => {
             <p className="mt-2 text-sm font-poppins font-extrabold">
               Editor with a considerable amount of experience
             </p>
-            <p className="mt-2 text-sm font-poppins font-extrabold">
+            <p className="mt-2 text-xl font-poppins font-bold text-purple-500">
               Discord Username: cikatris
             </p>
           </div>
