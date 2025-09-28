@@ -50,7 +50,7 @@ const AnimatedBackground: React.FC = () => {
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(186, 85, 211, ${particle.opacity})`; // بنفسجي
+        ctx.fillStyle = `rgba(186, 85, 211, ${particle.opacity})`; 
         ctx.fill();
       });
 
