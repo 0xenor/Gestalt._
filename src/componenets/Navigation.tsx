@@ -28,12 +28,12 @@ const Navigation: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          
           <div className="font-poppins font-semibold bg-gradient-to-r from-purple-600 to-red-600 bg-clip-text text-transparent text-10xs">
             Gestalt <span className="text-white">Editor.</span>
           </div>
 
-          {/* Desktop Menu */}
+          
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <a
@@ -47,7 +47,7 @@ const Navigation: React.FC = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -58,7 +58,7 @@ const Navigation: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        
         {isMobileMenuOpen && (
           <div className="md:hidden bg-black/90 backdrop-blur-sm">
             <div className="px-2 pt-2 pb-3 space-y-1">
