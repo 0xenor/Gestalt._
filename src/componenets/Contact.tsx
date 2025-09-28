@@ -164,7 +164,7 @@ const Contact: React.FC = () => {
             </div>
           </form>
 
-          {/* Social Media Links */}
+          
           <div className="mt-16 text-center">
             <h3 className="font-poppins font-bold text-xl mb-6">Contact Me</h3>
             <div className="flex justify-center space-x-6">
@@ -185,7 +185,7 @@ const Contact: React.FC = () => {
         </div>
       </div>
 
-      {/* Footer */}
+      
       <div className="mt-20 border-t border-gray-600 pt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-gray-400 font-inter font-black">
