@@ -2,17 +2,15 @@ import React from "react";
 import { RiTwitterXLine } from "react-icons/ri";
 import { FaDiscord } from "react-icons/fa";
 import ProfileImage from "../assets/gestalt.jpg";
-import ScrollTrimLine from "./ScrollTrimLine"; // our animated line
+import ScrollTrimLine from "./ScrollTrimLine"; 
 
 const HeroWithLine: React.FC = () => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center px-6 py-20">
-      {/* Animated SVG line behind everything */}
+    <div className="relative min-h-screen flex items-center justify-center px-6 py-20"
       <div className="absolute inset-0 z-0">
         <ScrollTrimLine />
       </div>
 
-      {/* Hero content above the line */}
       <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8">
           <div className="space-y-4">
