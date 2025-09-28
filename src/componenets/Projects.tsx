@@ -30,7 +30,6 @@ const Projects: React.FC = () => {
   const containerRefs = useRef<HTMLDivElement[]>([]);
   const [visibleSections, setVisibleSections] = useState<boolean[]>(projects.map(() => false));
 
-  // تشغيل/إيقاف الفيديو
   useEffect(() => {
     const videos = videoRefs.current.filter(Boolean);
     const videoObserver = new IntersectionObserver(
@@ -51,7 +50,7 @@ const Projects: React.FC = () => {
     return () => videoObserver.disconnect();
   }, []);
 
-  // Fade-in مع مراقبة الترتيب
+  
   useEffect(() => {
     const fadeObserver = new IntersectionObserver(
       (entries) => {
@@ -64,7 +63,7 @@ const Projects: React.FC = () => {
                 updated[index] = true;
                 return updated;
               });
-            }, index * 300); // كل سطر يتأخر 300ms على اللي قبلو
+            }, index * 300); 
           }
         });
       },
@@ -92,20 +91,20 @@ const Projects: React.FC = () => {
                 if (el) containerRefs.current[index] = el;
               }}
               style={{
-                transitionDelay: `${index * 0.3}s` // للتأكد من الـ delay في CSS
+                transitionDelay: `${index * 0.3}s` 
               }}
               className={`flex flex-col md:flex-row items-center gap-48 transform transition-all duration-1000 ease-out
                 ${visibleSections[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
               `}
             >
-              {/* الكابتشن */}
+              
               {!videoOnRight && (
                 <div className="bg-gradient-to-r from-purple-600 to-red-600 bg-clip-text text-transparent text-2xl font-bold md:w-1/2 text-center md:text-right">
                   {project.caption}
                 </div>
               )}
 
-              {/* الفيديو */}
+              
               <div className="flex-shrink-0 md:w-1/2 flex justify-center">
                 <div className="w-[500px] h-[280px] rounded-lg overflow-hidden shadow-lg">
                   <video
@@ -123,7 +122,7 @@ const Projects: React.FC = () => {
                 </div>
               </div>
 
-              {/* الكابتشن */}
+              
               {videoOnRight && (
                 <div className="bg-gradient-to-r from-purple-600 to-red-600 bg-clip-text text-transparent text-2xl font-bold md:w-1/2 text-center md:text-left">
                   {project.caption}
