@@ -59,7 +59,7 @@ export default function ScrollTrimLine() {
           C960,760 860,820 760,860
           C640,910 520,940 520,1024
         "
-        stroke="#FFFFFF"   // <-- Changed to white
+        stroke="#FFFFFF"   
         strokeWidth="6"
         strokeLinecap="round"
         fill="none"
