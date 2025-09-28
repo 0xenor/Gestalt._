@@ -20,7 +20,7 @@ const AnimatedBackground: React.FC = () => {
 
     const createParticles = () => {
       particlesRef.current = [];
-      const particleCount = Math.min(120, Math.floor(window.innerWidth / 10)); // كثرة النقاط
+      const particleCount = Math.min(120, Math.floor(window.innerWidth / 10)); 
       for (let i = 0; i < particleCount; i++) {
         particlesRef.current.push({
           x: Math.random() * canvas.width,
@@ -34,16 +34,15 @@ const AnimatedBackground: React.FC = () => {
     };
 
     const animate = () => {
-      // خلفية سوداء ثابتة
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // رسم النقاط البنفسجية
+      
       particlesRef.current.forEach((particle) => {
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        // إعادة النقطة إذا خرجت
+        
         if (particle.x < 0) particle.x = canvas.width;
         if (particle.x > canvas.width) particle.x = 0;
         if (particle.y < 0) particle.y = canvas.height;
