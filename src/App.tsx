@@ -32,7 +32,7 @@ function App() {
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
       <AnimatedBackground />
 
-      {/* Scroll line always behind everything */}
+      
       <ScrollTrimLine />
 
       <Navigation />
